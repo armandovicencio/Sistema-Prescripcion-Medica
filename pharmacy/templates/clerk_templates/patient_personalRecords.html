@@ -1,0 +1,69 @@
+{% extends 'clerk_templates/base_template.html'%} {% block main_content %}
+<section class="content">
+    <div class="row  m-2">
+        <div class="col-md-4">
+            <div class="card card-primary ">
+                <div class="card-header">
+                    <h5 class=" text-center text-white">
+                        {{patient.admin.first_name}}'s Details</h5>
+                </div>
+
+                <div class="card-body doc">
+                    <h5> Nombre: <span>{{patient.admin.first_name}}</span> </h5>
+                    <hr>
+                    <h5> Sexo: <span>{{patient.gender}}</span> </h5>
+                    <hr>
+                    <h5> Rut: <span>{{patient.dob}}</span> </h5>
+                    <hr>
+                    <h5> Dirección : <span>{{patient.address}}</span> </h5>
+                    <hr>
+                    <h5> Telefono: <span>{{patient.phone_number}}</span> </h5>
+                    <hr>
+                    <h5> Email: <span>{{patient.email}}</span> </h5>
+                    <hr>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card card-primary doc">
+                <div class="card-header">
+                    <h5>Receta
+                    </h5>
+                </div>
+
+
+                </h6>
+                <table class="table">
+                    <tr>
+                        <th>No</th>
+                        <th>Indicaciones</th>
+                        <th>Receta</th>
+                        <th></th>
+                    </tr>
+
+
+
+                    {% for prescription in prescription %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{prescription.description}}</td>
+                        <td>{{prescription.prescribe}}</td>
+
+                    </tr>
+
+
+
+                    {%endfor%}
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
