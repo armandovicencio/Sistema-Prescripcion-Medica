@@ -1,33 +1,58 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pharmacy Dispensing System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pharmacy Dispensing System</title>
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{% static 'css/main.css'%}">
-    <link rel="stylesheet" href="{% static 'css/profile.css'%}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/main.css'%}">
+  <link rel="stylesheet" href="{% static 'css/profile.css'%}">
 
-    <link rel="stylesheet" href="{% static "fontawesome-free/css/all.min.css" %}">
+  <link rel="stylesheet" href="{% static " fontawesome-free/css/all.min.css" %}">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
- 
-  
+
+
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.css'  %}">
   <link rel="stylesheet" href="{% static 'pace-progress/themes/black/pace-theme-flat-top.css' %}">
   <link rel="stylesheet" href="{% static 'datatables-bs4/css/dataTables.bootstrap4.min.css'%}">
   <link rel="stylesheet" href="{% static 'datatables-responsive/css/responsive.bootstrap4.min.css'%}">
   <link rel="stylesheet" href="{% static 'datatables-buttons/css/buttons.bootstrap4.min.css'%}">
   <link rel="stylesheet" href="{% static 'css/select2.css' %}">
- 
+
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <link href="{% static 'jquery-ui2/jquery-ui.min.css' %}" rel="stylesheet">
   <link href="{% static 'jquery-ui2/jquery-ui.structure.min.css' %}" rel="stylesheet">
   <link href="{% static 'jquery-ui2/jquery-ui.theme.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/682aac1834.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+    integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  {% load static %}
+  <script src="https://kit.fontawesome.com/2e11c35c7f.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+  <script>
 
+    $(document).ready(function () {
+      $('#myTable').DataTable();
+    });
+  </script>
 
 </head>
 {% block htm %}
@@ -37,10 +62,10 @@
 
 
 
-<script src="{% static "jquery/jquery.min.js"  %}"></script>
+<script src="{% static " jquery/jquery.min.js" %}"></script>
 
 <!-- Bootstrap 4 -->
-<script src="{% static "bootstrap/js/bootstrap.bundle.min.js"  %}"></script>
+<script src="{% static " bootstrap/js/bootstrap.bundle.min.js" %}"></script>
 
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.js'  %}"></script>
@@ -52,7 +77,7 @@
 <!-- modernizr js -->
 <!-- classie js -->
 <!-- i18next.min.js -->
-<script  src="{% static 'i18next/js/i18next.min.js'%}"></script>
+<script src="{% static 'i18next/js/i18next.min.js'%}"></script>
 <script src="{% static 'i18next-xhr-backend/js/i18nextXHRBackend.min.js'%}"></script>
 
 <script src="{% static 'js/paging.js' %}"></script>
@@ -75,57 +100,59 @@
 
 <script src="{% static 'js/datejs.js' %}"></script>
 
- {% block  js%}
- {% endblock %}
- <script>
-   $(document).ready(function(){
-  $(function () {
+{% block js%}
 
-    $("#plist").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": false,
-      "buttons": ["excel","print"],
-      "lengthMenu": [5]
-    }).buttons().container().appendTo('#plist_wrapper .col-md-6:eq(0)');
-    // $('#plist').DataTable({
-    //   "lengthChange": true,
-     
-    //   "lengthMenu":[5]
-    // });
-  
+{% endblock %}
+<script>
+  $(document).ready(function () {
+    $(function () {
+
+      $("#plist").DataTable({
+        "responsive": true, "lengthChange": true, "autoWidth": false,
+        "buttons": ["excel", "print"],
+        "lengthMenu": [5]
+      }).buttons().container().appendTo('#plist_wrapper .col-md-6:eq(0)');
+      // $('#plist').DataTable({
+      //   "lengthChange": true,
+
+      //   "lengthMenu":[5]
+      // });
+
+    });
   });
-});
- </script>
+</script>
 
- <script>
+<script>
 
-$("#id_drug_id").select2({
+  $("#id_drug_id").select2({
     placeholder: "Dispense Drug Here",
     allowClear: true
-});
-$("#id_drug_id").select2();
-$("#id_drug_id").on("select2:open", function (e) {
-  
-  $('#id_drug_id').change(function(){
-        var data= $(this).val();
-        // alert(data);       
-        $("#id_taken").val(data)
-         
-      });
+  });
+  $("#id_drug_id").select2();
+  $("#id_drug_id").on("select2:open", function (e) {
 
-     $('#select2-search__field')
-         .text(drugname)
-         .trigger('change');
-});
-$('#id_drug_id').select2({
-    placeholder:" Search Dispense Drug here",
-    width:"100%",
-    height:"45px"
+    $('#id_drug_id').change(function () {
+      var data = $(this).val();
+      // alert(data);       
+      $("#id_taken").val(data)
+
+    });
+
+    $('#select2-search__field')
+      .text(drugname)
+      .trigger('change');
+  });
+  $('#id_drug_id').select2({
+    placeholder: " Search Dispense Drug here",
+    width: "100%",
+    height: "45px"
 
 
 
- });
+  });
 
 
 </script>
 </body>
+
 </html>

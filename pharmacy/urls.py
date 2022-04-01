@@ -1,6 +1,7 @@
 from django.urls import path
 from .import HODViews
 from .import pharmacistViews,DoctorViews,views,patient_view,clerkViews
+from ecommerce import views_forms
 from django.contrib.auth import views as auth_views
 
 
@@ -18,8 +19,15 @@ urlpatterns=[
     path('admin_user/manage_doctor/',HODViews.manageDoctor,name='manage_doctor'),
     path('admin_user/add_pharmacyClerk/',HODViews.createPharmacyClerk,name='add_pharmacyClerk'),
     path('admin_user/admin_user/manage_pharmacyClerk/',HODViews.managePharmacyClerk,name='manage_pharmacyClerk'),
-    path('admin_user/add_stock/',HODViews.addStock,name='add_stock'),
-    path('admin_user/add_category/',HODViews.addCategory,name='add_category'),
+    path('admin_user/showDrugs/',HODViews.adminShowProductsPage,name='showDrugs'),
+    path('admin_user/showDrugs/add',HODViews.addDrug,name='addDrugs'),
+    path('adminPage/products/edit/<int:id>', HODViews.editDrug, name='editProd' ),
+    path('adminPage/products/delete/<int:id>', HODViews.deleteDrug, name='deleteProd' ),
+    path('adminPage/products/detail/<int:id>', HODViews.showProductDetail, name='showProductDetail' ),
+    path('adminPage/products/addCategory', HODViews.addCategory, name='addCategory' ),
+    path('adminPage/products/editCat/<int:id>', HODViews.editCat, name='editCat' ),
+    path('adminPage/products/deleteCat/<int:id>', HODViews.deleteCat, name='deleteCat' ),
+
     path('admin_user/manage_stock/',HODViews.manageStock,name='manage_stock'),    
     path('admin_user/prescribe_drug/',HODViews.addPrescription,name='prescribe'),
     path('admin_user/edit_patient/<patient_id>/',HODViews.editPatient,name='edit_patient'),

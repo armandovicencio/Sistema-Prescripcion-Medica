@@ -1,3 +1,4 @@
+from django.urls import reverse
 from pharmacy.clerkViews import receptionistProfile
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
@@ -305,30 +306,7 @@ def manageStock(request):
     }
 
     return render(request,'hod_templates/manage_stock.html',context)
-
-
-def addCategory(request):
-    try:
-        form=CategoryForm(request.POST or None)
-
-        if request.method == 'POST':
-            if form.is_valid():
-                form.save()
-                messages.success(request, "Category added Successfully!")
-
-                return redirect('add_category')
-    except:
-        messages.error(request, "Category Not added! Try again")
-
-        return redirect('add_category')
-
     
-    context={
-        "form":form,
-        "title":"Add a New Drug Category"
-    }
-    return render(request,'hod_templates/add_category.html',context)
-
 def addPrescription(request):
     form=PrescriptionForm(request.POST or None)
     if form.is_valid():
@@ -787,3 +765,127 @@ def drugDetails(request,pk):
 
     }
     return render(request,'hod_templates/view_drug.html',context)
+
+
+def adminShowProductsPage(request):
+    if request.method == 'GET':
+        prod = Product.objects.all()
+        contexto = {
+            'ProductForm'  : ProductForm(),
+            'productos': prod
+            }
+        return render(request, 'hod_templates/showDrugs.html', contexto )
+
+def addDrug(request):
+    if request.method == 'GET':
+        contexto = {
+            'ProductForm'  : ProductForm(),
+            }
+        return render(request, 'hod_templates/add_drug.html', contexto )
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        img = ProductForm(request.FILES)
+        a = (request.FILES.get('img'))
+        if form.is_valid():
+            prod = form.save(commit=False)
+            prod.img = a
+            prod.save()
+            print(prod)
+            messages.success(request, 'Producto agregado correctamente')
+            return redirect(reverse('showDrugs'))
+        else:
+            messages.error(request, 'Con errores, solucionar.')
+            return render(request, 'hod_templates/add_drug.html', {'ProductForm'  : form}) 
+
+def editDrug(request,id):
+    prod = Product.objects.get(id=id)
+    if request.method == 'GET':
+        form = ProductForm(instance=prod)
+        context = {
+            'ProductForm':form,
+            'product':prod
+        }
+        return render(request, 'hod_templates/editDrug.html', context)
+
+    if request.method == "POST":
+        prod = Product.objects.get(id=id)
+        form = ProductForm(request.POST,instance=prod)
+        img = request.FILES.get('img')
+        print(img)
+        if form.is_valid():
+            p = form.save(commit=False)
+            p.img = img
+            p.save()
+            messages.success(request, 'Producto editado correctamente')
+            return redirect('showDrugs')
+        else:
+            messages.error(request, 'Con errores, solucionar.')
+            return render(request, 'hod_templates/editDrug.html', {'ProductForm'  : form}) 
+
+def deleteDrug(request, id):
+    if request.method == 'POST':
+        prodD = Product.objects.get(id=id)
+        print(prodD.name)
+        prodD.delete()
+        messages.success(request,"Eliminado correctamente")
+        return redirect(reverse('showDrugs'))
+
+def addCategory(request):
+    if request.method == 'GET':
+        cat = DosageForm.objects.all()
+        contexto = {
+            'DosageForm'  : DosageFormForm(),
+            'categories':cat,
+            }
+
+        return render(request, 'hod_templates/addCategory.html' , contexto)
+    if request.method == "POST":
+        cat = DosageForm.objects.all()
+        form = DosageFormForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Categoria creada correctamente')
+            return redirect(reverse('addCategory'))
+        else:
+            messages.error(request, 'Con errores, solucionar.')
+            return render(request, 'hod_templates/addCategory.html', {'DosageForm'  : form, 'categories':cat,}) 
+
+def editCat(request,id):
+    cat = DosageForm.objects.get(id=id)
+    if request.method == 'GET':
+        form = DosageFormForm(instance=cat)
+        context = {
+            'DosageForm':form,
+            'category':cat
+        }
+        return render(request, 'hod_templates/edit_category.html', context)
+
+    if request.method == "POST":
+        print(request.POST)
+        cat = DosageForm.objects.get(id=id)
+        form = DosageFormForm(request.POST,instance=cat)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Categoria editada correctamente')
+            return redirect('addCategory')
+        else:
+            messages.error(request, 'Con errores, solucionar.')
+            return render(request, 'hod_templates/edit_category.html', {'DosageForm'  : form}) 
+
+def deleteCat(request, id):
+    if request.method == 'POST':
+        catD = DosageForm.objects.get(id=id)
+        print(catD.name)
+        catD.delete()
+        messages.success(request,"Eliminado correctamente")
+        return redirect(reverse('ecommerce:addCategory'))
+
+
+def showProductDetail(request,id):
+    if request.method == 'GET':
+        prod = Product.objects.get(id=id)
+        contexto = {
+            'producto':prod
+        }
+        print(prod.img)
+        return render(request, 'hod_templates/drugDetail.html', contexto) 
