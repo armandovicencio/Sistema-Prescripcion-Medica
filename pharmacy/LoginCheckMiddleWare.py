@@ -58,7 +58,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 elif modulename == "pharmacy.views" or modulename == "django.views.static":
                     pass
                 else:
-                    return redirect("patient_home")
+                    return redirect('patient_home')
             
             else:
                 return redirect("login")
