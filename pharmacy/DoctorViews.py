@@ -2,6 +2,11 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.forms import  UserCreationForm
+from django.views import View
+from pharmacy.utils import render_to_pdf
+
+
+from reportes.views import procesar_pdf
 from .decorators import *
 
 from .forms import *
@@ -64,10 +69,10 @@ def addPrescription(request,pk):
             form=PrescriptionForm(request.POST or None)
             if form.is_valid():
                 form.save()
-                messages.success(request,'Prescription added successfully')
+                messages.success(request,'Prescripción realizada con éxito')
                 return redirect('manage_precrip_doctor')
         except:
-            messages.error(request,'Prescription Not Added')
+            messages.error(request,'Prescripción no realizada')
             return redirect('manage_patient-doctor')
 
 
@@ -95,10 +100,10 @@ def deletePrescription(request,pk):
     if request.method == 'POST':
         try:
             prescribe.delete()
-            messages.success(request,'Prescription Deleted successfully')
+            messages.success(request,'Prescrición eliminada con éxito')
             return redirect('manage_precrip_doctor')
         except:
-            messages.error(request,'Prescription Not Deleted successfully')
+            messages.error(request,'Prescripción no eliminada')
             return redirect('manage_precrip_doctor')
 
 
@@ -111,7 +116,7 @@ def deletePrescription(request,pk):
     return render(request,'doctor_templates/sure_delete.html',context)
     
 def managePrescription(request):
-    precrip=Prescription.objects.all()
+    precrip=Prescription.objects.all().order_by("-date_precribed") 
 
     patient = Patients.objects.all()
     
@@ -134,10 +139,10 @@ def editPrescription(request,pk):
             if form.is_valid():
                 form.save()
 
-                messages.success(request,'Prescription Updated successfully')
+                messages.success(request,'Prescripción actualizada con éxito')
                 return redirect('manage_precrip_doctor')
         except:
-            messages.error(request,' Error!! Prescription Not Updated')
+            messages.error(request,' Error!! Prescripción no actualizada')
             return redirect('manage_precrip_doctor')
 
 
@@ -151,3 +156,19 @@ def editPrescription(request,pk):
     return render(request,'doctor_templates/edit_prescription.html',context)
     
     
+def receta_pdf(request,pk):
+    patient=Patients.objects.get(id=pk)
+    prescrip=patient.prescription_set.all()
+
+    context={
+        "patient":patient,
+        "prescription":prescrip
+
+    }
+    return procesar_pdf(context,"reportes/receta.html","receta.pdf")
+
+
+        
+
+
+

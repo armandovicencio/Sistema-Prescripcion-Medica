@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block misestilos %} 
+
+{% load static %}
+
+<link href="{% static 'ccs/misestilos.css' %}" rel="stylesheet" >
+
+<style>
+h1{
+    color:red;
+}
+</style>
+
+{% endblock %}
+
+{% block contenido %}
+    <h1>HOLA</h1>
+{% endblock %}

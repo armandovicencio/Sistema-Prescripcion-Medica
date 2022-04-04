@@ -81,6 +81,7 @@
                                 <td>{{prescrip.date_precribed}}</td>
                                 <td><a href="{% url 'doctor_prescrip_delete' prescrip.id %}" class="btn btn-sm btn-danger">Delete</a>
 
+                                    <a href="{% url 'receta_pdf' prescrip.id %}" class="btn btn-sm btn-primary">Crear Receta</a>
 
 
                                     <a href="{% url 'doctor_prescrip_edit' prescrip.id  %}" class="btn btn-sm btn-success">Edit</a></td>
