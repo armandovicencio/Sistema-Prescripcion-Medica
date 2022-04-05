@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <style>
+        @page {
+            size:A6 ;
+
+            @frame content_frame {
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                height: 692pt;
+
+            }
+        }
+
+        .table,
+        td,
+        th {
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        .table th,
+        td {
+            padding: 5px;
+            text-align: center;
+        }
+
+        .td {
+            word-break: inherit;
+        }
+
+        .list-group h3 {
+            font-size: 3em;
+        }
+
+        .list-group p {
+            font-size: 1em;
+        }
+
+        .table1 {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 5px;
+            background-color: #fff;
+            border: none;
+            text-align: center;
+        }
+
+        .table1 td {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>USUARIOS</h1>
+
+
+    <table class="tbl" width="100%" border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for u in usuarios %}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.firstname}} {{u.lastname}}</td>
+                <td>{{u.email}}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+
+</body>
+
+</html>

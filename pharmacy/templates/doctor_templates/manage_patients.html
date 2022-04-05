@@ -61,7 +61,7 @@
                                 <td>{{patient.mobile}}</td>
 
                                 <td><a href="{% url 'doctor_prescribe2' patient.id %}" class="btn btn-sm btn-warning">Prescribe</a>
-
+                                    {% comment %} <a href="{% url 'receta_pdf' patient.id %}" class="btn btn-sm btn-primary">Crear Receta</a> {% endcomment %}
                                     <a href="{% url 'patient_record_doctor' patient.id %}" class="btn btn-sm btn-success">View</a></td>
 
 

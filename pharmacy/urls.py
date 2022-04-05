@@ -82,7 +82,7 @@ urlpatterns=[
     path('manage_prescription_doctor/',DoctorViews.managePrescription,name='manage_precrip_doctor'),
     path('doctor_prescribe_delete/<str:pk>/',DoctorViews.deletePrescription,name='doctor_prescrip_delete'),
     path('doctor_prescribe_edit/<str:pk>/',DoctorViews.editPrescription,name='doctor_prescrip_edit'),
-
+    path('receta/<int:pk>',DoctorViews.receta_pdf,name='receta_pdf'),
     #Patients
     path('patient_profile/',patient_view.patientProfile,name='patient_profile'),
     path('patient_home/',patient_view.patientHome,name='patient_home'),

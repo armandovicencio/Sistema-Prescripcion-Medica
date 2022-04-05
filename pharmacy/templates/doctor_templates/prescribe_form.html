@@ -2,13 +2,13 @@
 {% load crispy_forms_tags %}
 
 {% block page_title %}
-<h5>Prescribe</h5>
+<h5>Prescripción Médica</h5>
 
 {% endblock page_title %}
 {% block link %}
-<li class="breadcrumb-item active"><a href="{% url 'manage_patient_doctor' %}"> all patients</a></li>
+<li class="breadcrumb-item active"><a href="{% url 'manage_patient_doctor' %}"> pacientes</a></li>
 
-<li class="breadcrumb-item active">Prescribe</li>
+<li class="breadcrumb-item active">Receta</li>
 
 {% endblock link%}
 {% block main_content %}
@@ -20,7 +20,7 @@
 
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Add Doctor</h3>
+                        <h3 class="card-title">Prescripción Médica</h3>
                     </div>
                    
                     <form  method="POST" style="font-size:13px;" class='px-3 py-2'>

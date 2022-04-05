@@ -153,8 +153,8 @@ button[type="submit"]:hover {
 					<div class="card justify-content-center py-4 bg-light">
 							<div class="">
 									<div class="text-center">
-											<img src="{% static 'images/mmust2.png'%}" width="150" height="130" alt="">
-											<h3 class="mb-4 fw-300 text-dark">Mmust Pharmacy Login</h3>
+											<img src="{% static 'images/home.png'%}" width="150" height="130" alt="">
+											<h3 class="mb-4 fw-300 text-dark">Prescripción y Farmacia Login</h3>
 									</div>
 									
 								  <div>
@@ -166,12 +166,12 @@ button[type="submit"]:hover {
 												<div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
 													<button type="button" class="close font__size-18" data-dismiss="alert"> <span aria-hidden="true">
 												<i class="fa fa-times danger "></i>
-												</span> <span class="sr-only">Close</span> </button> <i class="start-icon far fa-times-circle faa-pulse animated"></i> <strong class="font__weight-semibold">Oh snap!</strong> {{message}} </div>
+												</span> <span class="sr-only">Close</span> </button> <i class="start-icon far fa-times-circle faa-pulse animated"></i> <strong class="font__weight-semibold">Error de usuario y/o contraseña!</strong> {{message}} </div>
 											</div> {% elif message.tags == "success" %}
 											<div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
 												<button type="button" class="close font__size-18" data-dismiss="alert"> <span aria-hidden="true">
 											 <i class="fa fa-times greencross"></i>
-											 </a></span> <span class="sr-only">Close</span> </button> <i class="start-icon far fa-check-circle faa-tada animated"></i> <strong class="font__weight-semibold">Well done!</strong> {{message}} </div> {% endif %} {% endfor %} </div>
+											 </a></span> <span class="sr-only">Close</span> </button> <i class="start-icon far fa-check-circle faa-tada animated"></i> <strong class="font__weight-semibold">hecho!</strong> {{message}} </div> {% endif %} {% endfor %} </div>
 									</div> {% endif %}
 									<form class="input-light" method="POST">
 											{% csrf_token %}
@@ -199,7 +199,7 @@ button[type="submit"]:hover {
 									  <div class="form-group ">
 										<div class="custom-control custom-checkbox">
 										 
-										<a class="text-secondary " href="{% url 'reset_password' %}">Forgot password?</a>
+										<a class="text-secondary " href="{% url 'reset_password' %}">olvidó su password?</a>
 									  </div>
 									  <div class="form-group">
 										<button class="btn btn-primary" type="submit">Login</button>
