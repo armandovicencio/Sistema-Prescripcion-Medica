@@ -1,0 +1,74 @@
+{% extends 'hod_templates/base_template.html'%} {% load crispy_forms_tags %}{% block main_content %}
+<div class="fs-4 m-2">
+    <h1 class="text-center">Lista de Medicamentos</h1>
+    <div class="d-flex py-4  fs-3 ">
+        <a href="{% url 'addDrugs'  %}" class="mx-1 btn btn-info p-2 fs-4">Nuevo Producto <i
+                class="fa-solid fa-circle-plus"></i></a>
+    </div>
+    <table id="myTable" class="display m-2">
+        <thead>
+            <tr>
+                <th class="fs-5">ID</th>
+                <th class="fs-5">Nombre</th>
+                <th class="fs-5">DCI</th>
+                <th class="fs-5">Nombre Comercial</th>
+                <th class="fs-5">Dosis</th>
+                <th class="fs-5">Precio</th>
+                <th class="fs-5">Stock</th>
+                <th class="fs-5">Categoria</th>
+                <th class="fs-5">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in productos %}
+            <tr class="fs-5">
+                <td class="fs-5">{{product.id }}</td>
+                <td class="fs-5">{{product.name}}</td>
+                <td class="fs-5">{{product.dci}}</td>
+                <td class="fs-5">{{product.tradename}}</td>
+                <td class="fs-5">{{product.dose}}</td>
+                <td class="fs-5">S./{{product.price}}</td>
+                <td class="fs-5">{{product.stock}}</td>
+                <td class="fs-5">{{product.dosageForm.name}}</td>
+
+                <td>
+                    <a href="{% url 'showProductDetail' id=product.id %}" class="mx-1 fa fa-eye btn btn-info "></a>
+                    <a href="{% url 'editProd' id=product.id %}"
+                        class="mx-1 fa fa-pencil-square-o btn btn-warning "></a>
+                    <a href="" class="mx-1 fa fa-trash btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#myModal{{product.id}}"></a>
+                </td>
+            </tr>
+            <!-- The Modal -->
+            <div class="modal fade " id="myModal{{product.id}}">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title text-danger ">ALERTA</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Esta a punto de borrar: {{product.name}}
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <form action="{% url 'deleteProd' id=product.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                            </form>
+                            <a href="" class="btn btn-light" data-bs-dismiss="modal">Cancelar</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock main_content %}

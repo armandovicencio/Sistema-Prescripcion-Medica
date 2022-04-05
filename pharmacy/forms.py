@@ -227,3 +227,94 @@ class ReorderLevelForm(forms.ModelForm):
 		model = Stock
 		fields = ['reorder_level']
 
+class ProductForm(forms.ModelForm):
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        length = len(first_name)
+        if length <= 1:
+            print(length)
+            raise forms.ValidationError(
+                    f'El nombre debe tener por lo menos 2 caracteres',
+                )
+        if length == 0:
+            print(length)
+            raise forms.ValidationError(
+                    f'Nombre requerido',
+                )
+        return first_name
+
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
+        length = len(last_name)
+
+        if length <= 1:
+            print(length)
+            raise forms.ValidationError(
+                    f'El apellido debe tener por lo menos 2 caracteres',
+                )
+        return last_name
+
+    class Meta:
+
+        model = Product
+        fields = ['name', 'dci', 'tradename', 'dose', 'description', 'price', 'img', 'stock', 'dosageForm', 'valid_to' ]
+
+        labels = {
+            'name':'Nombre:',
+            'dci':'Nombre Cientifico:',
+            'tradename': 'Marca Comercial:',
+            'dose': 'Dosis:',
+            'description': 'Descripcion:',
+            'price': 'Precio:',
+            'img': 'Subir Imagen:',
+            'stock': 'Stock:',
+            'dosageForm': 'Categoria:',
+            'valid_to': 'Fecha de Vencimiento:',
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'dci': forms.TextInput(attrs={'class': 'form-control'}),
+            'tradename': forms.TextInput(attrs={'class': 'form-control'}),
+            'dose': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'price':forms.TextInput(attrs={'class': 'form-control'}),
+            'img':forms.FileInput(attrs={'class': 'form-control'}),
+            'stock':forms.TextInput(attrs={'class': 'form-control'}),
+            'dosageForm':forms.Select(attrs={'class': 'form-control'}),
+            'valid_to': forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
+
+
+        }
+
+class DosageFormForm(forms.ModelForm):
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        length = len(name)
+        if length < 3:
+            print(length)
+            raise forms.ValidationError(
+                    f'El nombre debe tener por lo menos 3 caracteres',
+                )
+        if length == 0:
+            print(length)
+            raise forms.ValidationError(
+                    f'Nombre requerido',
+                )
+        return name
+
+    class Meta:
+
+        model = DosageForm
+        fields = ['name']
+
+        labels = {
+            'name':'Nombre:',
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }  

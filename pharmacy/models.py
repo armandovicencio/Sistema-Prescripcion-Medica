@@ -222,8 +222,35 @@ def save_user_profile(sender, instance, **kwargs):
     if instance.user_type == 5:
         instance.patients.save()
 
+class DosageForm(models.Model):
+    name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'{self.name}'
 
-   
+class Product(models.Model):
+
+    name = models.CharField(max_length=100)
+    dci = models.CharField(max_length=100, default=None)
+    tradename = models.CharField(max_length=100, default=None)
+    dose = models.CharField(max_length=10, default='100 mg')
+    description = models.CharField(max_length=400)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    img = models.ImageField(upload_to="images/", blank=True, null=True)
+    stock = models.IntegerField(default=0, null=False)
+    dosageForm = models.ForeignKey(DosageForm, related_name='drugs', on_delete=models.CASCADE, default=1)
+    cantVendidos = models.IntegerField(default=0)
+    valid_from = models.DateTimeField(blank=True, null=True,default=timezone.now)
+    valid_to = models.DateTimeField(blank=False, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__ (self):
+        return f'{self.name} - {self.dosageForm.name} - {self.price} - {self.stock}'
+
+
+
 
 
 

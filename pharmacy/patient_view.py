@@ -13,10 +13,12 @@ def patientHome(request):
     patient_obj = Patients.objects.get(admin=request.user.id)
 
     patient_dispen=patient_obj.dispense_set.all().count()
+    products = Product.objects.all()
     context={
-          "total_disp":patient_dispen
+        "total_disp":patient_dispen,
+        'productos':products
     }
-    return render(request,'patient_templates/patient_home.html',context)
+    return render(request,'ecommerce/mainPage.html',context)
 
 @login_required
 def patientProfile(request):

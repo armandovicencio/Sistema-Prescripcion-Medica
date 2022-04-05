@@ -1,0 +1,155 @@
+{% extends "ecommerce/index.html" %}
+{% block title%}FarmaBot{%endblock%}
+{% block content%}
+
+
+<div class="d-flex flex-column">
+
+    <div id="carouselExampleDark" class="carousel carousel-dark carousel slide carousel-fade " data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active mb-1" data-bs-interval="10000">
+                {%load static%}
+                <img src="{% static 'img/carrucel4.webp' %}" class="d-block imgBar" alt="Error de carga, por favor actualizar.">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="d-flex justify-content-start align-items-start txtCarrousel rounded-pill">
+                        <div class="d-flex flex-column justify-content-start align-items-start ">
+                            <h2 class="textDarkBlue my-4 ms-5 opacityTextFull ">Adquiere los medicamentos que necesites</h2>
+                            <h4 class="textDarkBlue my-4 ms-5 opacityTextFull">De ser requerido, contactanos para presentar tu receta medica</h4>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center align-content-center w-100 h-100" >
+                            <div class="h-100 flex-column align-items-center align-content-center marginCarrousel ">
+                                <a class="btn btn-info text-center opacityTextFull fs-4" href="">Ir a Medicamentos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item mb-1" data-bs-interval="10000">
+                {%load static%}
+                <img src="{% static 'img/carrucel2.jpg' %}" class="d-block imgBar" alt="Error de carga, por favor actualizar.">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="d-flex justify-content-start align-items-start txtCarrousel rounded-pill">
+                        <div class="d-flex flex-column justify-content-start align-items-start ">
+                            <h2 class="textDarkBlue my-4 ms-5 opacityTextFull ">Nuestros medicos estan preparados para cualquier urgencia</h2>
+                            <h4 class="textDarkBlue my-4 ms-5 opacityTextFull">Aliviar tus dolores y cuidar de tu salud es nuestra prioridad</h4>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center align-content-center w-100 h-100" >
+                            <div class="h-100 flex-column align-items-center align-content-center marginCarrousel ">
+                                <a class="btn btn-info text-center opacityTextFull fs-4" href="">Registrarse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item mb-1" data-bs-interval="10000">
+                <img src="{% static 'img/carrucel3.jpeg' %}" class="d-block imgBar" alt="Error de carga, por favor actualizar.">
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="d-flex justify-content-start align-items-start txtCarrousel rounded-pill">
+                        <div class="d-flex flex-column justify-content-start align-items-start ">
+                            <h2 class="textDarkBlue my-4 ms-5 opacityTextFull ">Agenda una consulta medica con nosotros</h2>
+                            <h4 class="textDarkBlue my-4 ms-5 opacityTextFull">Contamos con medicos preparados para atender tu salud</h4>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center align-content-center w-100 h-100" >
+                            <div class="h-100 flex-column align-items-center align-content-center marginCarrousel ">
+                                <a class="btn btn-info text-center opacityTextFull fs-4" href="">Agendar</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon " aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="bgLittleWhite vw-100 p-4 d-flex flex-column">
+        <p class="text-center fs-1">Medicamentos Populares</p>
+        <div class="d-flex flex-row container justify-content-around pb-4">
+            <div class="d-flex flex-column container justify-content-around">
+                
+                <img class="imgPortfolio w-100" src="{{ productos.0.img.url }}" alt="">
+                <p class="m-1 text-capitalize text-center">{{productos.0.name}}</p>
+                <p class="m-1 text-capitalize text-center">S/{{productos.0.price}}</p>
+                <p class="m-1 text-capitalize text-center">{{productos.0.description}}</p>
+                <form action="" method="post" class="d-flex justify-content-center">
+                    <button class="btn btn-info w-100" type="submit"><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
+                </form>
+            </div>
+            <div class="d-flex flex-column container justify-content-around">
+                
+                <img class="imgPortfolio w-100" src="{{ productos.0.img.url }}" alt="">
+                <p class="m-1 text-capitalize text-center">{{productos.0.name}}</p>
+                <p class="m-1 text-capitalize text-center">S/{{productos.0.price}}</p>
+                <p class="m-1 text-capitalize text-center">{{productos.0.description}}</p>
+                <form action="" method="post" class="d-flex justify-content-center">
+                    <button class="btn btn-info w-100" type="submit"><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
+                </form>
+            </div>
+            <div class="d-flex flex-column container justify-content-around">
+                
+                <img class="imgPortfolio w-100" src="{{ productos.0.img.url }}" alt="">
+                <p class="m-1 text-capitalize text-center">{{productos.0.name}}</p>
+                <p class="m-1 text-capitalize text-center">S/{{productos.0.price}}</p>
+                <p class="m-1 text-capitalize text-center">{{productos.0.description}}</p>
+                <form action="" method="post" class="d-flex justify-content-center">
+                    <button class="btn btn-info w-100" type="submit"><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
+                </form>
+            </div>
+            <div class="d-flex flex-column container justify-content-around">
+                
+                <img class="imgPortfolio w-100" src="{{ productos.0.img.url }}" alt="">
+                <p class="m-1 text-capitalize text-center">{{productos.0.name}}</p>
+                <p class="m-1 text-capitalize text-center">S/{{productos.0.price}}</p>
+                <p class="m-1 text-capitalize text-center">{{productos.0.description}}</p>
+                <form action="" method="post" class="d-flex justify-content-center">
+                    <button class="btn btn-info w-100" type="submit"><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
+                </form>
+            </div>
+            <div class="d-flex flex-column container justify-content-around">
+                
+                <img class="imgPortfolio w-100" src="{{ productos.0.img.url }}" alt="">
+                <p class="m-1 text-capitalize text-center">{{productos.0.name}}</p>
+                <p class="m-1 text-capitalize text-center">S/{{productos.0.price}}</p>
+                <p class="m-1 text-capitalize text-center">{{productos.0.description}}</p>
+                <form action="" method="post" class="d-flex justify-content-center">
+                    <button class="btn btn-info w-100" type="submit"><i class="fa-solid fa-cart-plus"></i> Agregar al carrito</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="bgKit d-flex">
+        <div class="div1">
+            <img class= "imgKit" src="{% static 'img/atencion.webp' %}" alt="Error de carga, por favor actualizar.">
+        </div>
+        <div class="div2 d-flex flex-column justify-content-center align-items-center container w-50 ">
+            <h1 class="m-2 text-white">Sé parte de FarmaBot con una opinión!</h1>
+            <h5 class="m-2 w-50 text-center text-info">Incluye tus comentarios en nuestro sitio web y participa del sorteo de 1 cupón mensual de descuento en nuestras consultas.</h5>
+            <a class="m-2 colorKit fs-2" href=""> <span>Ir a recomendaciones </span> </a>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
