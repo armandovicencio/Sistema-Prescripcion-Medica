@@ -783,14 +783,22 @@ def addDrug(request):
             }
         return render(request, 'hod_templates/add_drug.html', contexto )
     if request.method == "POST":
+        cat = DosageForm.objects.all()
         form = ProductForm(request.POST)
         img = ProductForm(request.FILES)
         a = (request.FILES.get('img'))
         if form.is_valid():
             prod = form.save(commit=False)
             prod.img = a
-            prod.save()
+            for c in cat:
+                print(c)
+                print(prod.dosageForm.name)
+                if prod.dosageForm.name == c.name:
+                    c.cantProd = c.cantProd+ 1
+                    c.save()
+                    print(f"Product: {c} - {c.cantProd}")
             print(prod)
+            prod.save()
             messages.success(request, 'Producto agregado correctamente')
             return redirect(reverse('showDrugs'))
         else:
@@ -824,8 +832,19 @@ def editDrug(request,id):
 
 def deleteDrug(request, id):
     if request.method == 'POST':
+        cat = DosageForm.objects.all()
         prodD = Product.objects.get(id=id)
         print(prodD.name)
+        for c in cat:
+            print(c)
+            print(prodD.dosageForm.name)
+            if c.cantProd > 0:
+                if prodD.dosageForm.name == c.name:
+                    c.cantProd = c.cantProd - 1
+                    c.save()
+                    print(f"Product: {c} - {c.cantProd}")
+                print(prodD)
+
         prodD.delete()
         messages.success(request,"Eliminado correctamente")
         return redirect(reverse('showDrugs'))

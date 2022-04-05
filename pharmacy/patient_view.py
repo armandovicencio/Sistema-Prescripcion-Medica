@@ -3,22 +3,27 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .decorators import *
 from django.contrib.auth.decorators import login_required
-
+from ecommerce.models import Boleta, BoletaDetalle
 from .forms import *
 from .models import *
 
 
 @login_required
 def patientHome(request):
-    patient_obj = Patients.objects.get(admin=request.user.id)
-
-    patient_dispen=patient_obj.dispense_set.all().count()
-    products = Product.objects.all()
-    context={
-        "total_disp":patient_dispen,
-        'productos':products
-    }
-    return render(request,'ecommerce/mainPage.html',context)
+    if request.method == 'GET':
+        productos = Product.objects.all()
+        if 'usuario' in request.session:
+            boletaid = Boleta.objects.filter(users = request.session['usuario']['id'], pagado = False).last()
+            print(boletaid)
+            cart = BoletaDetalle.objects.filter(usuario = request.session['usuario']['id'], boleta = boletaid)
+            print(cart)
+        else:
+            cart = 0
+        contexto = {
+            'productos': productos,
+            'cart':cart,
+            }
+        return render(request, 'ecommerce/mainPage.html', contexto)
 
 @login_required
 def patientProfile(request):

@@ -91,6 +91,8 @@ urlpatterns=[
     path('taken_home/',patient_view.patient_dispense3,name='taken_home'),
     path('delete_patient_feedback2/<str:pk>/',patient_view.Patientdeletefeedback, name="delete_fed2"),
     path('delete_dispen/',patient_view.myPrescriptionDelete,name='taken_delete'),
+    path('shoppingCart/empty', views_forms.shoppingCartempty, name='shoppingCartempty'),
+    path('products/', views_forms.productGrid, name='productGrid'),
 
     #Receptionist
     path('receptionist_profile/',clerkViews.receptionistProfile,name='clerk_profile'),

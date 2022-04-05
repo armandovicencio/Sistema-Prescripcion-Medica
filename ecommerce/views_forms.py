@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
 from .models import BoletaDetalle, Boleta
-
+from django.db.models import Count
 from pharmacy.models import CustomUser, Product, DosageForm
 import re
 from datetime import date
@@ -118,9 +118,13 @@ def logout(request):
 def mainPage(request):
     if request.method == 'GET':
         productos = Product.objects.all()
+
+
         if 'usuario' in request.session:
             boletaid = Boleta.objects.filter(users = request.session['usuario']['id'], pagado = False).last()
+            print(boletaid)
             cart = BoletaDetalle.objects.filter(usuario = request.session['usuario']['id'], boleta = boletaid)
+            print(cart)
         else:
             cart = 0
         contexto = {
@@ -132,14 +136,31 @@ def mainPage(request):
 def productGrid(request):
     if request.method == 'GET':
         allProduct = Product.objects.all()
-        prodByPijamasCat = Product.objects.filter(prodCat__name= "Pijamas")
-        prodByBodyCat = Product.objects.filter(prodCat__name= "Body")
-        prodByConjuntoCat = Product.objects.filter(prodCat__name= "Conjunto")
-        prodByBabitasCat = Product.objects.filter(prodCat__name= "Babita")
-        prodByInviernoCat = Product.objects.filter(prodCat__name= "Invierno")
-        print(prodByInviernoCat)
-    return render(request, 'ecommerce/products.html')
+        allProductCount = Product.objects.all().count()
+        allCategories = DosageForm.objects.all()
+        category1 = Product.objects.filter(dosageForm = 0)
+        contexto={
+            'productos':allProduct,
+            'categories':allCategories,
+            'allProductCount':allProductCount,
 
+        }
+    return render(request, 'ecommerce/products.html', contexto)
+
+def productGridByCat(request, category):
+    if request.method == 'GET':
+        allProductCount = Product.objects.all().count()
+        categories = DosageForm.objects.all()
+        for cat in categories:
+            if cat.name == category:
+                filterProducts = Product.objects.filter(dosageForm = cat.id)
+        contexto={
+            'productos': filterProducts,
+            'categories':categories,
+            'allProductCount':allProductCount,
+
+        }
+    return render(request, 'ecommerce/products.html', contexto)
 
 def productBySize(request, size):
     if request.method == 'GET':
@@ -233,6 +254,17 @@ def shoppingCart(request):
 def shoppingCartempty(request):
     return render(request, 'ecommerce/shoppingCartEmpty.html')
 
+def deleteProductFromCart(request, id):
+    if request.method == 'POST':
+        lastBoleta = Boleta.objects.all().filter(users = request.session['usuario']['id']).last()
+        detalleProd = BoletaDetalle.objects.get(id=id)
+        detalleProd.delete()
+        messages.success(request,"Eliminado correctamente")
+        if detalleProd.id ==  lastBoleta.id:
+            return redirect(reverse('ecommerce:shoppingCart'))
+        else:
+            return redirect(reverse('ecommerce:shoppingCartempty'))
+
 def buy(request):
     if request.method == 'POST':
         
@@ -256,7 +288,7 @@ def buy(request):
         boletaid.pagado = True
         boletaid.save()
         messages.success(request, 'Compra efectuada correctamente')
-        return redirect(reverse('ecommerce:mainPage'))
+        return redirect(reverse('patient_home'))
 
 #Admin
 def adminMainPage(request):
@@ -341,7 +373,7 @@ def addCategory(request):
         cat = DosageForm.objects.all()
         form = DosageFormForm(request.POST)
         if form.is_valid():
-            form.save()
+            tmp = form.save()
             messages.success(request, 'Categoria creada correctamente')
             return redirect(reverse('ecommerce:addCategory'))
         else:

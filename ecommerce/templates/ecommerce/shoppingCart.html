@@ -15,9 +15,8 @@
                     class="img-fluid rounded-3" alt="Cotton T-shirt">
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-                <h6 class="text-muted text-capitalize">{{product.productos.prodCat.name}}</h6>
-                <h6 class="text-muted text-capitalize">{{product.productos.get_size_display}}</h6>
-                <h6 class="text-muted text-capitalize">{{product.productos.description}}</h6>
+                <h6 class="text-muted text-capitalize">{{product.productos.dosageForm.name}}</h6>
+                <h6 class="text-muted text-capitalize">Dosis: {{product.productos.dose}}</h6>
                 <h6 class="text-black mb-0 text-capitalize">{{product.productos.name}}</h6>
                 
             </div>
@@ -40,28 +39,30 @@
                 <h6 class="mb-0">S/. {{product.subtotal}}</h6>
             </div>
             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                <form action="{% url 'ecommerce:deleteProductCart' id=product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="text-muted btn btn-link"><i class="fas fa-times"></i></button>
+                </form>
             </div>
         </div>
         {% endfor %}
         
         <div class="pt-5">
-            <h6 class="mb-0"><a href="#!" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to
+            <h6 class="mb-0"><a href="{% url 'ecommerce:productGrid' %}" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to
                     shop</a></h6>
         </div>
     </div>
 
 
-    <div class="col-lg-4 bg-grey vh-100">
+    <div class="col-lg-4 bg-grey h-100">
         <div class="p-5">
             <h3 class="fw-bold mb-4 mt-1 pt-1">Resumen de Compra</h3>
             {% for product in cart %}
             <hr class="my-1">
             <div class="d-flex justify-content-between mb-2 align-items-center">
                 <div>
-                    <p class="text-capitalize my-0">{{product.productos.prodCat.name}}</p>
-                    <p class="text-capitalize my-0">{{product.productos.get_size_display}}</p>
-                    <p class="text-capitalize my-0">{{product.productos.name}}</p>
+                    <p class="text-capitalize my-2">{{product.productos.dosageForm.name}}</p>
+                    <p class="text-capitalize my-2">{{product.productos.name}}</p>
                     
                 </div>
                 <p>Cantidad: {{product.cantidad}}</p>
@@ -101,7 +102,7 @@
                     <h5 class="fs-5">Monto Final:</h5><h5 class="fs-5 ">S/.{{subtotal}}</h5>
                 </div>
             </div>
-            <form action="{% url 'baby:buy' %}" method="post">
+            <form action="{% url 'ecommerce:buy' %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Comprar</button>
             </form>

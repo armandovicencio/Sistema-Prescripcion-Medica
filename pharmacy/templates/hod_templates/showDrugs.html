@@ -1,35 +1,35 @@
 {% extends 'hod_templates/base_template.html'%} {% load crispy_forms_tags %}{% block main_content %}
-<div class="fs-4 m-2">
+<div class="m-2">
     <h1 class="text-center">Lista de Medicamentos</h1>
-    <div class="d-flex py-4  fs-3 ">
-        <a href="{% url 'addDrugs'  %}" class="mx-1 btn btn-info p-2 fs-4">Nuevo Producto <i
+    <div class="d-flex py-4">
+        <a href="{% url 'addDrugs'  %}" class="mx-1 btn btn-info p-2">Nuevo Producto <i
                 class="fa-solid fa-circle-plus"></i></a>
     </div>
     <table id="myTable" class="display m-2">
         <thead>
             <tr>
-                <th class="fs-5">ID</th>
-                <th class="fs-5">Nombre</th>
-                <th class="fs-5">DCI</th>
-                <th class="fs-5">Nombre Comercial</th>
-                <th class="fs-5">Dosis</th>
-                <th class="fs-5">Precio</th>
-                <th class="fs-5">Stock</th>
-                <th class="fs-5">Categoria</th>
-                <th class="fs-5">Acciones</th>
+                <th class="">ID</th>
+                <th class="">Nombre</th>
+                <th class="">DCI</th>
+                <th class="">Nombre Comercial</th>
+                <th class="">Dosis</th>
+                <th class="">Precio</th>
+                <th class="">Stock</th>
+                <th class="">Categoria</th>
+                <th class="">Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for product in productos %}
-            <tr class="fs-5">
-                <td class="fs-5">{{product.id }}</td>
-                <td class="fs-5">{{product.name}}</td>
-                <td class="fs-5">{{product.dci}}</td>
-                <td class="fs-5">{{product.tradename}}</td>
-                <td class="fs-5">{{product.dose}}</td>
-                <td class="fs-5">S./{{product.price}}</td>
-                <td class="fs-5">{{product.stock}}</td>
-                <td class="fs-5">{{product.dosageForm.name}}</td>
+            <tr class="">
+                <td class="">{{product.id }}</td>
+                <td class="">{{product.name}}</td>
+                <td class="">{{product.dci}}</td>
+                <td class="">{{product.tradename}}</td>
+                <td class="">{{product.dose}}</td>
+                <td class="">S./{{product.price}}</td>
+                <td class="">{{product.stock}}</td>
+                <td class="">{{product.dosageForm.name}}</td>
 
                 <td>
                     <a href="{% url 'showProductDetail' id=product.id %}" class="mx-1 fa fa-eye btn btn-info "></a>

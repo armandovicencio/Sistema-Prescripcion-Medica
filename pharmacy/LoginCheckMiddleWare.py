@@ -52,15 +52,9 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 else:
 
                     return redirect("clerk_home")
-            elif user.user_type == "5":
-                if modulename == "pharmacy.patient_view":
-                    pass
-                elif modulename == "pharmacy.views" or modulename == "django.views.static":
-                    pass
-                else:
-                    return redirect('patient_home')
+
             
-            else:
+            elif user.user_type != "5":
                 return redirect("login")
 
             

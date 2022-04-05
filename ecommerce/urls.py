@@ -14,6 +14,8 @@ urlpatterns = [
     path('shoppingCart/empty', views_forms.shoppingCartempty, name='shoppingCartempty'),
     path('shoppingCart/', views_forms.shoppingCart, name='shoppingCart'),
     path('shoppingCart/buy', views_forms.buy, name='buy'),
+    path('shoppingCart/delete/<int:id>', views_forms.deleteProductFromCart, name='deleteProductCart'),
     path('products/', views_forms.productGrid, name='productGrid'),
+    path('products/<str:category>/', views_forms.productGridByCat, name='productGridByCat'),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
