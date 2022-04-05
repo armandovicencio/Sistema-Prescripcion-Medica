@@ -20,21 +20,21 @@ def loginPage(request):
             login(request, user)
             user_type = user.user_type
             if user_type == '1':
-                request.session['usuario'] = {'nombre':user.first_name , 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
+                request.session['usuario'] = {'first_name':user.first_name, 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
                 return redirect('/')
                 
             elif user_type == '2':
-                request.session['usuario'] = {'nombre':user.first_name , 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
+                request.session['usuario'] = {'first_name':user.first_name, 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
                 return redirect('pharmacist_home')
 
             elif user_type == '3':
-                request.session['usuario'] = {'nombre':user.first_name , 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
+                request.session['usuario'] = {'first_name':user.first_name, 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
                 return redirect('doctor_home')
             elif user_type == '4':
-                request.session['usuario'] = {'nombre':user.first_name , 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
+                request.session['usuario'] = {'first_name':user.first_name, 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
                 return redirect('clerk_home')
             elif user_type == '5':
-                request.session['usuario'] = {'nombre':user.first_name , 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
+                request.session['usuario'] = {'first_name':user.first_name, 'apellido':user.last_name, 'email':user.email, 'id':user.id, 'typeUser':user.user_type}
                 return redirect('patient_home')
                 
            

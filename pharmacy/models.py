@@ -132,7 +132,8 @@ class Prescription(models.Model):
     prescribe=models.CharField(max_length=100,null=True)
     date_precribed=models.DateTimeField(auto_now_add=True, auto_now=False)
 
-
+    def __str__(self):
+        return f'{self.description} + {self.prescribe} '
 
 
 class ExpiredManager(models.Manager):

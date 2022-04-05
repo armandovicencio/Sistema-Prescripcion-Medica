@@ -111,15 +111,14 @@
 
                     </div>
                     {% if request.session.usuario %}
-                    <h2 class="fs-4 text-white mx-3">Bienvenida {{request.session.usuario.nombre}}
-                        {{request.session.usuario.apellido}}</h2>
-                    {% if cart %}
+                    <h2 class="fs-4 text-white mx-3">Bienvenida {{request.session.usuario.first_name}} {{request.session.usuario.apellido}}</h2>
+                        {% if cart %}
                     <a class="text-white" href="{% url 'ecommerce:shoppingCart' %}"><span
                             class=" fs-4 fa-solid fa-cart-shopping btn btn-warning "></span></a>
-                    {% else %}
+                        {% else %}
                     <a class="text-white" href="{% url 'ecommerce:shoppingCartempty' %}"><span
                             class=" fs-4 fa-solid fa-cart-shopping btn btn-warning "></span></a>
-                    {% endif %}
+                        {% endif %}
                     <div class="d-flex me-5">
                         <a href="{% url 'logout' %}" class="btn btn-outline-dark m-3  withoutBorder text-light ">Salir
                             <i class="fa-solid fa-door-open"></i></a>

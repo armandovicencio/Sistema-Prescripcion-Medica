@@ -172,19 +172,19 @@ def productBySize(request, size):
 
         return render(request, 'ecommerce/productBySize.html', contexto)
 
-def productBySizeByCat(request, size, category):
-    prod = Product.objects.filter(size__in=size)
-    if request.method == 'GET':
-        print(size)
-        print(category)
-        prod = Product.objects.filter(prodCat__name= category).filter(size__contains=size)
-        contexto = {
-            'size':size,
-            'category':category,
-            'products':prod,
-        }
-        print(prod)
-        return render(request, 'ecommerce/productBySizeByCat.html', contexto)
+#def productBySizeByCat(request, size, category):
+#    prod = Product.objects.filter(size__in=size)
+#    if request.method == 'GET':
+#        print(size)
+#        print(category)
+#        prod = Product.objects.filter(prodCat__name= category).filter(size__contains=size)
+#        contexto = {
+#            'size':size,
+#            'category':category,
+#            'products':prod,
+#        }
+#        print(prod)
+#        return render(request, 'ecommerce/productBySizeByCat.html', contexto)
 
 subtotal = 0
 descuento = 0

@@ -158,11 +158,16 @@ def editPrescription(request,pk):
     
 def receta_pdf(request,pk):
     patient=Patients.objects.get(id=pk)
-    prescrip=patient.prescription_set.all()
+    prescrip=Prescription.objects.filter(patient_id=pk).last()
+    print(prescrip)
+    print(prescrip.prescribe)
 
+    print(request.session['usuario']['first_name'] + request.session['usuario']['apellido'])
+    customuser=CustomUser.objects.get(id=request.session['usuario']['id'])
     context={
         "patient":patient,
-        "prescription":prescrip
+        "prescription":prescrip,
+        "customUser":customuser
 
     }
     return procesar_pdf(context,"reportes/receta.html","receta.pdf")

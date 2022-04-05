@@ -8,7 +8,6 @@ app_name = 'ecommerce'
 urlpatterns = [
     path('', views_forms.mainPage, name='mainPage' ),
     path('products/<str:size>', views_forms.productBySize, name='productBySize'),
-    path('products/<str:size>/<str:category>', views_forms.productBySizeByCat, name='productBySizeByCat'),
     path('logout/', views_forms.logout, name='logout' ),
     path('products/addToShoppingCart/<int:id>', views_forms.addToShoppingCart, name='addToShoppingCart'),
     path('shoppingCart/empty', views_forms.shoppingCartempty, name='shoppingCartempty'),
