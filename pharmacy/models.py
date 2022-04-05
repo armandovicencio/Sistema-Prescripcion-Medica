@@ -224,6 +224,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 class DosageForm(models.Model):
     name = models.CharField(max_length=100)
+    cantProd = models.IntegerField(default=0, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

@@ -56,39 +56,15 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link  text-white mx-3 " aria-current="page"
-                                    href="{% url 'ecommerce:mainPage' %}">Inicio</a>
+                                    href="{% url 'patient_home' %}">Inicio</a>
                             </li>
                             {% if request.session.usuario %}
                             <li class="nav-item">
                                 <a class="nav-link  text-white mx-3 " href="#">Mis Recetas</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle  text-white mx-3" href="" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown">
-                                    Productos
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <p class="mx-4 my-1">Edad del Bebé</p>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='1' %}">0-3
-                                            meses</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='2' %}">3-6
-                                            meses</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="{% url 'ecommerce:productBySize' size='3' %}">6-12 meses</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="{% url 'ecommerce:productBySize' size='4' %}">12-18 meses</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="{% url 'ecommerce:productBySize' size='5' %}">18-24 meses</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='6' %}">2
-                                            años</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='7' %}">3
-                                            años</a></li>
-                                </ul>
+                            <li class="nav-item ">
+                                <a class="nav-link  text-white mx-3 " aria-current="page"
+                                    href="{% url 'ecommerce:productGrid'%}">Productos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link  text-white mx-3 " href="#">Contacta a tu medico</a>

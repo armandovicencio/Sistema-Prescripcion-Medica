@@ -22,11 +22,11 @@
     <div class="d-flex justify-content-center align-items-center">
         {% if producto.img %}
         <div class = "w-50">
-            <img class="ms-5" src="{{ producto.img.url }}" alt="Error de carga, por favor actualizar">
+            <img class="ms-5 imgDetail" src="{{ producto.img.url }}" alt="Error de carga, por favor actualizar">
         {% else %}
         </div>
         {% load static %}
-        <img class="halfImage" src="{% static 'img/babyClothesAdd.jpg' %}" alt="Error de carga, por favor actualizar">
+        <img class="imgDetail" src="{% static 'img/babyClothesAdd.jpg' %}" alt="Error de carga, por favor actualizar">
         {% endif %}
 
     </div>

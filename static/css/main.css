@@ -2204,3 +2204,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     height: 40%;
 }
 
+.imgDetail{
+    height:60vh ;
+    width:70vh ;
+}
