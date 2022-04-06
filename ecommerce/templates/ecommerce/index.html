@@ -157,9 +157,9 @@
             "hideMethod": "fadeOut"
         }
         {% if messages %}
-        {% for message in messages %}
-        toastr.{ { message.tags } } ("{{ message }}")
-        {% endfor %}
+            {% for message in messages %}
+                toastr.{ { message.tags } } ("{{ message }}")
+            {% endfor %}
         {% endif %}
     </script>
 
