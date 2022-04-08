@@ -162,7 +162,8 @@ def receta_pdf(request,pk):
 
     context={
         "patient":patient,
-        "prescription":prescrip
+        "prescription":prescrip,
+        
 
     }
     return procesar_pdf(context,"reportes/receta.html","receta.pdf")
