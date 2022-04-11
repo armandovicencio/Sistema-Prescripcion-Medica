@@ -1,0 +1,122 @@
+{% extends "ecommerce/index.html" %}
+{% block title%}FarmaBot{%endblock%}
+{% block content%}
+
+<div class="container d-flex flex-column">
+    <div class="d-md-flex align-items-md-center">
+        <div class="h3 mt-3">Medicamentos</div>
+        <div class="ml-auto d-flex align-items-center views"> <span class="btn text-success">
+                <span class="fas fa-th px-md-2 px-1"></span>
+                <span>Grid view</span> </span>
+            <span class="btn"> </span>
+            <span class="green-label px-md-2 px-1">{{allProductCount}}</span> <span class="text-muted">Products</span>
+        </div>
+    </div>
+    <div class="d-flex flex-row">
+        <div class="content py-md-0 py-3">
+            <section id="sidebar">
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Categorias</h5>
+                    <ul class="list-group">
+                        <li
+                        class=" text-decoration-none list-group-item list-group-item-action d-flex justify-content-between align-items-center category">
+                        <a class="color-dark" href="{% url 'ecommerce:productGrid'%}">Todos</a> <span class="badge badge-primary badge-pill">{{allProductCount}}</span> </li>
+                        {% for cat in categories %}
+                        <li
+                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category">
+                            <a class="text-decoration-none" href="{% url 'ecommerce:productGridByCat' category=cat.name %}">{{cat.name}}</a>
+                            <span class="badge badge-primary badge-pill">{{cat.cantProd}}</span> </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Brands</h5>
+                    <form class="brand">
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Royal Fields <input
+                                    type="checkbox"> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Crasmas Fields
+                                <input type="checkbox" checked> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Vegetarisma Farm
+                                <input type="checkbox" checked> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Farmar Field Eve
+                                <input type="checkbox"> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">True Farmar Steve
+                                <input type="checkbox"> <span class="check"></span> </label> </div>
+                    </form>
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Rating</h5>
+                    <form class="rating">
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span
+                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                    class="fas fa-star"></span> <input type="checkbox"> <span class="check"></span>
+                            </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span
+                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                                    class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span
+                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                    class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                                    class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span
+                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                                    class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span
+                                    class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <span
+                                    class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                                    class="check"></span> </label> </div>
+                    </form>
+                </div>
+            </section> <!-- Products Section -->
+            <section id="products">
+                <div class="container py-3">
+                    <div class="row d-flex flex-wrap">
+                        {% for product in productos %}
+                        <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 mb-1">
+                            <div class="card"> <img class="card-img-top"
+                                    src="{{ product.img.url }}">
+                                <div class="card-body">
+                                    <h6 class="font-weight-bold pt-1">{{ product.name }}</h6>
+                                    <div class="text-muted description">{{product.description}}</div>
+                                    <div class="d-flex align-items-center product"> <span class="fas fa-star"></span>
+                                        <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                            class="fas fa-star"></span> <span class="far fa-star"></span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between pt-3">
+                                        <div class="d-flex flex-column">
+                                            <div class="h6 font-weight-bold">Tienda: S/.{{product.price}}</div>
+                                            <div class="text-muted rebate">Internet: S/.{{product.price}}</div>
+                                            <form action="{% url 'ecommerce:addToShoppingCart' id=product.id %}" method="post" class="d-flex justify-content-center">
+                                                {% csrf_token %}
+                                                <select class="form-select littleSelect w-100" aria-label="Default select example" name="cantidad">
+                                                    <option selected value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                                <button class="btn btn-info px-4 " type="submit"><i class="fa-solid fa-cart-plus"></i> Agregar</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

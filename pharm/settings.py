@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'reportes',
     'crispy_forms',
     'phonenumber_field',
+    'ecommerce',
 
- 
+
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ ROOT_URLCONF = 'pharm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

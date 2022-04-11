@@ -2,8 +2,6 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-
-
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -20,8 +18,9 @@
                 <li class="mx-3">
 
                     <a href="#" class="sm-submenu-with-image a">
-                        <span>{{user.first_name}}  {{user.last_name}}</span>
-                        <img src="{{request.user.adminhod.profile_pic.url}}" class="img-circle elevation-1" width="38" height="38" alt="">
+                        <span>{{user.first_name}} {{user.last_name}}</span>
+                        <img src="{{request.user.adminhod.profile_pic.url}}" class="img-circle elevation-1" width="38"
+                            height="38" alt="">
                         <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                     </a>
                 </li>
@@ -29,12 +28,12 @@
                 <!-- Notifications Dropdown Menu -->
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown ml-3 low">
-                    <a href="#" class="btn btn-outlined btn-black text-muted bg-transparent " data-toggle="dropdown" aria-expanded="false" data-wow-delay="0.7s"><img src="https://img.icons8.com/ios/50/000000/settings.png" width="19" height="19">
+                    <a href="#" class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  data-wow-delay="0.7s"><img src="https://img.icons8.com/ios/50/000000/settings.png" width="19" height="19">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
 
-                        <a href="{% url 'hod_profile' %}" class="dropdown-item">
-                            <i class="fas fa-user-edit mr-2"></i> Update Profile
+                        <a href="{% url 'doctor_profile' %}" class="dropdown-item">
+                            <i class="fas fa-user-edit mr-2"></i> Actualizar Perfil
                         </a>
                         <div class="dropdown-divider"></div>
 
@@ -96,7 +95,7 @@
 
     </div>
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             $('.alert').fadeOut();
         }, 1500);
 
@@ -104,10 +103,10 @@
 
 
 
-        $(function() {
-            $("#filter").on("keyup", function() {
+        $(function () {
+            $("#filter").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#plist > tbody > tr").filter(function() {
+                $("#plist > tbody > tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });

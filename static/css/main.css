@@ -2192,3 +2192,19 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .content-wrapper .content-header {
     padding: 5px 0.5rem !important;
 }
+
+
+.imgPortfolio {
+    width: 15vw;
+    height: 30vh;
+}
+
+.halfImage {
+    width: 40%;
+    height: 40%;
+}
+
+.imgDetail{
+    height:60vh ;
+    width:70vh ;
+}

@@ -10,7 +10,7 @@
                     <h3 class="card-title ">{{title}}</h3>
                 </div>
 
-                <form method="POST" style="font-size:13px;" class='px-3 py-2'>
+                <form action="{% url 'add_pharmacyClerk'%}" method="POST" style="font-size:13px;" class='px-3 py-2'>
                     {% csrf_token %} {% include 'hod_templates/alert_messeges.html'%}
 
                     <div class="card-body deco">
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="bg-light">
-                        <input type="button" class="btn btn-info ml-4 mb-4" data-toggle="modal" data-target=".bd-example-modal-sm" value="Submit">
+                        <input type="submit" class="btn btn-info ml-4 mb-4"  value="Submit">
 
                 </form>
 
