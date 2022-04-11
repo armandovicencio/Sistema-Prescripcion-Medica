@@ -545,6 +545,10 @@ h6 {
     }
 }
 
+.s{
+    margin-top:10px;
+}
+
 @media(min-width:768px) and (max-width:991px) {
 
     .radio,
@@ -626,4 +630,8 @@ h6 {
 .imgDetail{
     height:30vh ;
     width:50vh ;
+}
+
+.miniFont{
+    font-size:10px;
 }

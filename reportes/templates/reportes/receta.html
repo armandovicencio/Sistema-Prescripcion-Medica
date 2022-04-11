@@ -11,18 +11,18 @@
                 
             }
         </style>
-        <div class='wrapper'>
-            <div class='header'>
-                <img style="width: 50px; border: 2px solid red;" src="static/images/medlogo.png" alt="">
+        <div class='wrapper' >
+            <div class='header' style='padding-top:10px;' >
+                <img style="width: 50px; border: 2px solid red; text-align: center; padding-top:10px;" src="static/images/medlogo.png" alt="">
                 <p style="text-align: center; margin: 0px; font-size: 25px;">Receta Medica </p>
                 {{user.first_name}}  {{user.last_name}}
                     <p style="text-align: center; margin: 0px; font-size: 14px;">Dr/a: {{customUser.first_name}} {{customUser.last_name}}</p>
-                    <p style="text-align: center; margin: 0px; font-size: 14px;">Especialidad: </p>
-                    <p style="text-align: center; margin: 0px; font-size: 14px;">Direccion: </p><br>
+                    <p style="text-align: center; margin: 0px; font-size: 14px;">Especialidad: Medico General </p>
+                    <p style="text-align: center; margin: 0px; font-size: 14px;">Direccion: Calle Wallaby 42 Sidney </p><br>
                 
             </div>
         </div>
-        <div class='details'>
+        <div class='details' style="margin-left:40px ;">
             <span style="text-decoration: underline; font-size: 14px;">Paciente</span>:<span style="font-size: 14px;"> {{patient.first_name}}  {{patient.last_name}}</span><br><br>
             <span style="text-decoration: underline; font-size: 14px;">Rut</span>:<span style="font-size: 14px;"> {{ patient.reg_no }}</span><br><br><br>
             <hr><br>
@@ -32,6 +32,6 @@
             <p style="text-align:center;">_______________________________</p>
             <p style="text-align:center; position: fixed; margin-bottom: 0px;">Firma</p>
 
-          
+
     </body>
 </html>
