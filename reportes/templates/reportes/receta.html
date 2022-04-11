@@ -26,12 +26,16 @@
             <span style="text-decoration: underline; font-size: 14px;">Paciente</span>:<span style="font-size: 14px;"> {{patient.first_name}}  {{patient.last_name}}</span><br><br>
             <span style="text-decoration: underline; font-size: 14px;">Rut</span>:<span style="font-size: 14px;"> {{ patient.reg_no }}</span><br><br><br>
             <hr><br>
-            <span style="text-decoration: underline; font-size: 15px; padding: 20px;">Medicamento/s</span>:<span style="font-size: 20px; font-weight: 600;">{{prescription.prescribe|linebreaks}}</span>
-            <span style="text-decoration: underline; display: inline-block; font-size: 15px;">Acciones</span>:<span style="font-size: 20px; font-weight: 600;">{{prescription.description|linebreaks}}</span><br/>
+            <span style="text-decoration: underline; font-size: 25px; padding: 20px;">R.p</span>:<span style="font-size: 20px; font-weight: 600;">{{prescription.prescribe|linebreaks}}</span>
+            <span style="text-decoration: underline; display: inline-block; font-size: 15px;">Indicaciones</span>:<span style="font-size: 20px; font-weight: 600;">{{prescription.description|linebreaks}}</span><br/>
         </div>
             <p style="text-align:center;">_______________________________</p>
             <p style="text-align:center; position: fixed; margin-bottom: 0px;">Firma</p>
-
-          
+            
     </body>
+    {% comment %} <div id="footer_content">(c) - page <pdf:pagenumber>
+        of <pdf:pagecount>
+    </div> {% endcomment %}
+    <p style="text-align:center;">
+        <pdf:barcode value="Verificación de Documento" " type="code128" humanreadable="1" align="right" /></p>
 </html>
