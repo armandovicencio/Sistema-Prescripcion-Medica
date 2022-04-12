@@ -12,8 +12,7 @@ from datetime import datetime
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import datetime 
-
-
+from .forms import PatientForm, PatientSearchForm1
 from .models import *
 
 

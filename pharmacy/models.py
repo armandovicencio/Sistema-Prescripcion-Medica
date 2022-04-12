@@ -127,7 +127,7 @@ class Category(models.Model):
 
     
 class Prescription(models.Model):
-    patient_id = models.ForeignKey(Patients,null=True, on_delete=models.SET_NULL)
+    patient_id = models.ForeignKey(Patients,null=True,related_name='patients', on_delete=models.SET_NULL)
     description=models.TextField(null=True)
     prescribe=models.CharField(max_length=100,null=True)
     date_precribed=models.DateTimeField(auto_now_add=True, auto_now=False)

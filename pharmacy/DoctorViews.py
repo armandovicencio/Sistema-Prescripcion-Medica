@@ -157,8 +157,8 @@ def editPrescription(request,pk):
     
     
 def receta_pdf(request,pk):
-    patient=Patients.objects.get(id=pk)
-    prescrip=Prescription.objects.filter(patient_id=pk).last()
+    prescrip=Prescription.objects.get(id=pk)
+    patient=Patients.objects.filter(patients=prescrip).last()
     print(prescrip)
     print(prescrip.prescribe)
 
