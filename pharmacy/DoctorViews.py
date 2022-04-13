@@ -1,3 +1,4 @@
+from email.message import EmailMessage
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
@@ -167,14 +168,24 @@ def receta_pdf(request,pk):
     context={
         "patient":patient,
         "prescription":prescrip,
-<<<<<<< HEAD
         
-=======
-        "customUser":customuser
->>>>>>> master
 
     }
     return procesar_pdf(context,"reportes/receta.html","receta.pdf")
+
+
+def send_mail_2(request):
+    message = request.POST.get('message', '')
+    subject = request.POST.get('subject', '')
+    mail_id = request.POST.get('email', '')
+    email = EmailMessage(subject, message, EMAIL_HOST_USER, [mail_id])
+    email.content_subtype = 'html'
+
+    file = request.FILES['file']
+    email.attach(file.name, file.read(), file.content_type)
+
+    email.send()
+    return HttpResponse("Sent")
 
 
         
