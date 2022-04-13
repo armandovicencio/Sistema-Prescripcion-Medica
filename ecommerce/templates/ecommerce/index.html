@@ -79,28 +79,6 @@
                                 role="button" data-bs-toggle="dropdown">
                                 Productos
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <p class="mx-4 my-1">Edad del Bebé</p>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='1' %}">0-3
-                                        meses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='2' %}">3-6
-                                        meses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='3' %}">6-12
-                                        meses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='4' %}">12-18
-                                        meses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='5' %}">18-24
-                                        meses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='6' %}">2
-                                        años</a></li>
-                                <li><a class="dropdown-item" href="{% url 'ecommerce:productBySize' size='7' %}">3
-                                        años</a></li>
-                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  text-white mx-3 " href="#">Contactanos</a>
@@ -111,7 +89,8 @@
 
                     </div>
                     {% if request.session.usuario %}
-                    <h2 class="fs-4 text-white mx-3">Bienvenida {{request.session.usuario.first_name}} {{request.session.usuario.apellido}}</h2>
+                    
+                    <h2 class="fs-4 text-white mx-3">Bienvenido Pcte. {{request.session.usuario.apellido}}</h2>
                         {% if cart %}
                     <a class="text-white" href="{% url 'ecommerce:shoppingCart' %}"><span
                             class=" fs-4 fa-solid fa-cart-shopping btn btn-warning "></span></a>
@@ -155,10 +134,10 @@
             "hideEasing": "linear",
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
-        }
+            }
         {% if messages %}
             {% for message in messages %}
-                toastr.{ { message.tags } } ("{{ message }}")
+                toastr.{{message.tags}}("{{ message }}")
             {% endfor %}
         {% endif %}
     </script>

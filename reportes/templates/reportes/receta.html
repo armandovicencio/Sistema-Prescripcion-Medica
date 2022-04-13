@@ -3,17 +3,16 @@
     <head>
         <title>Receta Medica</title>
     </head>
-    <body>
-
+    <body> 
         <style>
             @page {
                 size: A4;
                 
             }
-        </style>
-        <div class='wrapper' >
-            <div class='header' style='padding-top:10px;' >
-                <img style="width: 50px; border: 2px solid red; text-align: center; padding-top:10px;" src="static/images/medlogo.png" alt="">
+        </style> 
+        <div class='wrapper'>
+            <div class='header'>
+                <img style="width: 50px; border: 2px solid red;" src="static/images/medlogo.png" alt="">
                 <p style="text-align: center; margin: 0px; font-size: 25px;">Receta Medica </p>
                 {{user.first_name}}  {{user.last_name}}
                     <p style="text-align: center; margin: 0px; font-size: 14px;">Dr/a: {{customUser.first_name}} {{customUser.last_name}}</p>
@@ -31,12 +30,11 @@
         </div>
             <p style="text-align:center;">_______________________________</p>
             <p style="text-align:center; position: fixed; margin-bottom: 0px;">Firma</p>
-
-
+            
     </body>
-    <div id="footer_content">(c) - page <pdf:pagenumber>
-        of <pdf:pagecount> 
-    </div> 
+    {% comment %} <div id="footer_content">(c) - page <pdf:pagenumber>
+        of <pdf:pagecount>
+    </div> {% endcomment %}
     <p style="text-align:center;">
         <pdf:barcode value="Verificación de Documento" " type="code128" humanreadable="1" align="right" /></p>
 </html>
