@@ -162,7 +162,7 @@ def receta_pdf(request,pk):
     print(prescrip)
     print(prescrip.prescribe)
 
-    print(request.session['usuario']['first_name'] + request.session['usuario']['apellido'])
+    print(request.session['usuario']['nombre'] + request.session['usuario']['apellido'])
     customuser=CustomUser.objects.get(id=request.session['usuario']['id'])
     context={
         "patient":patient,
